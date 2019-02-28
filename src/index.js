@@ -4,6 +4,7 @@ const quoteUrl = "http://localhost:3000/quotes"
 const quoteList = document.querySelector('#quote-list')
 let quoteForm = document.querySelector('#new-quote-form')
 let allQuotes = []
+const sort = document.querySelector('#sort')
 
 // get all quotes
 fetch(quoteUrl)
@@ -48,16 +49,28 @@ quoteList.addEventListener("click", function(e){
   }
   if (e.target.className === "btn-edit"){
     createForm(e)
-
     editQuote()
   }
 })
+
+sort.addEventListener("click", function(e){
+  e.preventDefault()
+  let sortedQuotes = allQuotes.slice(0)
+  sortedQuotes.sort(function(a,b){
+    let x = a.author.toLowerCase()
+    let y = b.author.toLowerCase()
+    return x < y ? -1 : x > y ? 1 : 0
+  })
+  quoteList.innerHTML = ""
+  sortedQuotes.forEach(renderQuotes)
+})
+
 
 function createForm(e){
   let id = parseInt(e.target.parentNode.dataset.id)
   let quote = allQuotes.find(quote => quote.id === id)
   quoteForm.innerHTML = `
-  <form id="edit-quote" style="display:none">
+  <form id="edit-quote" >
     <div class="form-group">
       <label for="edit-quote">Quote</label>
       <input type="text" class="form-control" id="edit-quote" value="${quote.quote}">
