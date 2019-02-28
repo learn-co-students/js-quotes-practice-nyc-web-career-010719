@@ -11,12 +11,15 @@
 </head>
 <body class='container center'>
   <h1>My favorite quotes:</h1>
+  <button type="OFF" id="sort"data-action="ON"class="btn btn-warning">SORT OFF</button>
   <div>
     <ul id="quote-list">
     </ul>
   </div>
   <hr>
   <div>
+    <div class="forms">
+
     <form id="new-quote-form">
       <div class="form-group">
         <label for="new-quote">New Quote</label>
@@ -28,6 +31,11 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <form id="edit-quote-form">
+    </form>
+
+    </div>
   </div>
   <script src="src/index.js"></script>
 </body>
