@@ -12,6 +12,9 @@
 <body class='container center'>
   <h1>My favorite quotes:</h1>
   <div>
+    <button type="button" id="btn-toggle">Author Toggle</button>
+  </div>
+  <div>
     <ul id="quote-list">
     </ul>
   </div>
@@ -27,6 +30,22 @@
         <input type="text" class="form-control" id="author" placeholder="Flatiron School">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <form id="edit-quote-form">
+      <h4>Edit Form</h4>
+      <div class="form-group">
+        <label for="new-quote">Edit Quote</label>
+        <input type="text" class="form-control" id="edit-quote">
+      </div>
+      <div class="form-group">
+        <label for="Author">Author</label>
+        <input type="text" class="form-control" id="edit-author">
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="id-author">
+      </div>
+      <button type="submit" class="btn btn-primary" data-action="edit">Edit</button>
     </form>
   </div>
   <script src="src/index.js"></script>
