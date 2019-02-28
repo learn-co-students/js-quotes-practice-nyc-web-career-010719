@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchQuotes()
 
   document.addEventListener("click", (e) => {
-    // debugger
     if (e.target.id == "createBtn") {
       e.preventDefault()
       let newQuote = document.querySelector("#new-quote").value
@@ -21,9 +20,64 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.className == "btn-success") {
       addLike(e.target)
     }
+    if (e.target.className == "btn-edit") {
+      eQuote = allQuotes.find(quote => quote.id == e.target.dataset.description)
+      e.target.parentElement.innerHTML += `
+      <form data-id=${eQuote.id} id='quote-form' class="padding margin border-round border-grey">
+        <input id="quote" type="quote" name="quote" placeholder="quote" value="${eQuote.quote}">
+        <input id="author" type="author" name="author" placeholder="author" value="${eQuote.author}">
+        <button id="editSubmit"> Submit </button>
+      </form>
+      `
+    }
+    if (e.target.id == "editSubmit") {
+      e.target.parentElement = ""
+      // let editSubmit = document.querySelector("#editSubmit")
+      editQuote(e.target.parentElement)
+      // editSubmit.addEventListener("click", editQuote(e.target.parentElement))
+    }
+    if (e.target.id == "btn-sort") {
+      // debugger
+      // quoteList.innerHTML = ""
+
+      if (e.target.innerText === "Sort by Author Name Off") {
+        let sorted = allQuotes.slice().sort((a, b) => a.author.localeCompare(b.author))
+        e.target.innerText = "Sort by Author Name On"
+        renderQuotes(sorted)
+      } else {
+        // debugger
+        quoteList.innerHTML = ""
+        e.target.innerText = "Sort by Author Name Off"
+        // debugger
+        renderQuotes(allQuotes)
+      }
+
+    }
   })
 
 })//DOMContentLoaded
+
+function editQuote(quote) {
+  let eQuote = quote.querySelector("#quote").value
+  let eAuthor = quote.querySelector("#author").value
+  let id = quote.dataset.id
+  fetch(`http://localhost:3000/quotes/${id}`, {
+    method: "PATCH",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({quote: eQuote, author: eAuthor})
+  })
+  .then(r => r.json())
+  .then(function(quote) {
+    // renderQuote(quote)
+  })
+
+}
 
 function addLike(target) {
   let newLike = ++target.querySelector("span").innerText
@@ -86,6 +140,7 @@ function createQuote(quote, author) {
         <br>
         <button data-likes=${quote.id} class='btn-success'>Likes: <span>${quote.likes}</span></button>
         <button data-description=${quote.id} class='btn-danger'>Delete</button>
+        <button data-description=${quote.id} class='btn-edit'>Edit</button>
       </blockquote>
     </li>
     `
@@ -98,18 +153,28 @@ function fetchQuotes() {
   .then(quotes=> quotes.json())
   .then(function(parsed) {
     allQuotes = parsed
-    for (var quote in allQuotes) {
-      quoteList.innerHTML += `
-      <li id=d${allQuotes[quote].id} class='quote-card'>
-        <blockquote class="blockquote">
-          <p class="mb-0">${allQuotes[quote].quote}</p>
-          <footer class="blockquote-footer">${allQuotes[quote].author}</footer>
-          <br>
-          <button data-likes=${allQuotes[quote].id} class='btn-success'>Likes: <span>${allQuotes[quote].likes}</span></button>
-          <button data-description=${allQuotes[quote].id} class='btn-danger'>Delete</button>
-        </blockquote>
-    </li>
-      `
-    }
+    renderQuotes(parsed)
   })
+}
+
+function renderQuotes(quotes) {
+  quoteList.innerHTML = ""
+  for (var quote in quotes) {
+    renderQuote(quotes[quote])
+  }
+}
+
+function renderQuote(quote) {
+  quoteList.innerHTML += `
+  <li id=d${quote.id} class='quote-card'>
+    <blockquote class="blockquote">
+      <p class="mb-0">${quote.quote}</p>
+      <footer class="blockquote-footer">${quote.author}</footer>
+      <br>
+      <button data-likes=${quote.id} class='btn-success'>Likes: <span>${quote.likes}</span></button>
+      <button data-description=${quote.id} class='btn-danger'>Delete</button>
+      <button data-description=${quote.id} class='btn-edit'>Edit</button>
+    </blockquote>
+</li>
+  `
 }

@@ -2,19 +2,19 @@
   "quotes": [
     {
       "id": 1,
-      "quote": "Don't count the days, make the days count.",
+      "quote": "ggg",
       "likes": 16,
-      "author": "Mike Tyson"
+      "author": "asdfa"
     },
     {
       "id": 2,
-      "quote": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
+      "quote": "gone",
       "likes": 14,
-      "author": "Collin Powell"
+      "author": "workss?"
     },
     {
       "id": 4,
-      "quote": "Our greatest glory is not in never falling, but in rising everytime we fall.",
+      "quote": "yooooooo",
       "likes": 14,
       "author": "Confucius"
     },
@@ -27,8 +27,14 @@
     {
       "id": 6,
       "quote": "Perseverance is the hard work you do after you get tired of doing the hard work you already did.",
-      "likes": 7,
+      "likes": 8,
       "author": "Newt Gingrich"
+    },
+    {
+      "quote": "yooooooo",
+      "author": "joseph",
+      "likes": 6,
+      "id": 7
     }
   ]
 }
