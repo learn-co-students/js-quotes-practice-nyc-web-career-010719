@@ -2,40 +2,51 @@
   "quotes": [
     {
       "id": 1,
-      "quote": "Don't count the days, make the days count.",
-      "likes": 1,
+      "quote": " Count the days, make the days count.",
+      "likes": 32,
       "author": "Mike Tyson"
-    },
-    {
-      "id": 2,
-      "quote": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
-      "likes": 1,
-      "author": "Collin Powell"
     },
     {
       "id": 3,
       "quote": "Tell me and I forget, teach me and I remember, involve me and I learn.",
-      "likes": 1,
+      "likes": 21,
       "author": "Benjamin Franklin"
     },
     {
       "id": 4,
       "quote": "Our greatest glory is not in never falling, but in rising everytime we fall.",
-      "likes": 1,
+      "likes": 19,
       "author": "Confucius"
     },
     {
-      "id": 5 ,
+      "id": 5,
       "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-      "likes": 1,
-      "author": "Winston Churchhill"
+      "likes": 13,
+      "author": "Winston Churchill"
     },
     {
       "id": 6,
       "quote": "Perseverance is the hard work you do after you get tired of doing the hard work you already did.",
-      "likes": 1,
+      "likes": 10,
       "author": "Newt Gingrich"
+    },
+    {
+      "quote": "Learn. Love. Code",
+      "likes": 1,
+      "author": "Flatiron School",
+      "id": 7
+    },
+    {
+      "quote": "I Love STRBX",
+      "likes": 3,
+      "author": "Everyone",
+      "id": 8
+    },
+    {
+      "quote": "I Like Shnitzel",
+      "likes": 0,
+      "author": "Lord Zev Spilman",
+      "id": 9
     }
-
   ]
 }
