@@ -32,23 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (e.target.id == "editSubmit") {
       e.target.parentElement = ""
-      // let editSubmit = document.querySelector("#editSubmit")
       editQuote(e.target.parentElement)
-      // editSubmit.addEventListener("click", editQuote(e.target.parentElement))
     }
     if (e.target.id == "btn-sort") {
-      // debugger
-      // quoteList.innerHTML = ""
-
       if (e.target.innerText === "Sort by Author Name Off") {
         let sorted = allQuotes.slice().sort((a, b) => a.author.localeCompare(b.author))
         e.target.innerText = "Sort by Author Name On"
         renderQuotes(sorted)
       } else {
-        // debugger
         quoteList.innerHTML = ""
         e.target.innerText = "Sort by Author Name Off"
-        // debugger
         renderQuotes(allQuotes)
       }
 
@@ -74,7 +67,6 @@ function editQuote(quote) {
   })
   .then(r => r.json())
   .then(function(quote) {
-    // renderQuote(quote)
   })
 
 }
