@@ -38,7 +38,7 @@ quoteForm.addEventListener("submit", function(e){
       quoteForm.reset()
     })
 })
-// delete quote or add likes
+// delete quote or add likes or edit quote
 quoteList.addEventListener("click", function(e){
   if (e.target.className === "btn-danger") {
     deleteQuote(e)
@@ -71,7 +71,6 @@ function createForm(e){
   </form>
   `
 }
-
 function editQuote(){
   quoteForm.addEventListener("submit", function(e){
     e.preventDefault()
@@ -96,12 +95,10 @@ function editQuote(){
       allQuotes[index] = editQuote
       quoteList.innerHTML = ""
       allQuotes.forEach(renderQuotes)
-      quoteForm.reset()
     })
 
   })
 }
-
 function addLikes(e){
   let id = parseInt(e.target.parentNode.dataset.id)
   let likes = allQuotes.find(quote => quote.id === id).likes
